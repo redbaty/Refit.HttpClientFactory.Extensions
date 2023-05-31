@@ -1,0 +1,26 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: | 
+            7.0.x
+            6.0.x
+
+      - name: Nuget pack (github)
+        run:  dotnet pack -c Release -o out -p:PackageVersion=1.0.${{ github.run_number }}
+
+      - name: Push nuget (github)
+        run: dotnet nuget push ./out/*.nupkg --api-key "${{ secrets.NUGETKEY }}" -s https://api.nuget.org/v3/index.json
