@@ -4,6 +4,7 @@
         <TargetFrameworks>netstandard2.0;net462;net6.0;net7.0</TargetFrameworks>
         <Nullable>enable</Nullable>
         <LangVersion>8</LangVersion>
+        <PackageID>Redbaty.Refit.HttpClientFactory.Extensions</PackageID>
     </PropertyGroup>
 
     <ItemGroup>
